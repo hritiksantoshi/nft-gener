@@ -1,0 +1,72 @@
+{
+  "hash": "01122134445262",
+  "decodedHash": [
+    {
+      "0": 1
+    },
+    {
+      "1": 2
+    },
+    {
+      "2": 1
+    },
+    {
+      "3": 4
+    },
+    {
+      "4": 4
+    },
+    {
+      "5": 2
+    },
+    {
+      "6": 2
+    }
+  ],
+  "edition": 7,
+  "date": 1663593508324,
+  "attributes": [
+    {
+      "id": 1,
+      "layer": "background",
+      "name": "130",
+      "rarity": 3
+    },
+    {
+      "id": 2,
+      "layer": "body",
+      "name": "220",
+      "rarity": 2
+    },
+    {
+      "id": 1,
+      "layer": "outfits",
+      "name": "2",
+      "rarity": 2
+    },
+    {
+      "id": 4,
+      "layer": "beard",
+      "name": "8",
+      "rarity": 2
+    },
+    {
+      "id": 4,
+      "layer": "eyes",
+      "name": "4",
+      "rarity": 2
+    },
+    {
+      "id": 2,
+      "layer": "glasses",
+      "name": "210",
+      "rarity": 1
+    },
+    {
+      "id": 2,
+      "layer": "mouths",
+      "name": "2",
+      "rarity": 5
+    }
+  ]
+}
