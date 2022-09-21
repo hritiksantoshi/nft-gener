@@ -10,8 +10,8 @@ module.exports.createNft = async (req, res) => {
                 await libs.deleteDirectory(`${process.cwd()}/Layers/${layer}`)
             };
             res.send(req.fileValidationError);
-        } else {
-            console.log(req.layers);
+        }
+        else {
             const buildDir = `${process.cwd()}/build`;
             const layersDir = `${process.cwd()}/Layers`;
             let layersOrder = [];
