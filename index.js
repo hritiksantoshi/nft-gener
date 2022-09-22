@@ -10,10 +10,11 @@ const middlewares = require('./middlewares');
 // initalizing Apis
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use('/image', express.static(path.join(__dirname, './build')));
-app.post('/NFT', middlewares.uploadFiles,controllers.createNft);
+app.use('/images', express.static(path.join(__dirname, './build/images')));
+app.post('/sign_up',controllers.createUser);
+app.post('/generateNFT', middlewares.uploadFiles,controllers.createNft);
 
 // starting Server
 app.listen(8000, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:${8000}`);
+    console.log(`⚡️[server]: Server is running at http://localhost:${8000}`);
 });

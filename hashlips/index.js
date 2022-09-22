@@ -37,16 +37,16 @@ module.exports.generateNFt = async function (layersDir, buildDir, layersOrder, f
     let itemRarity;
     let name = _str.slice(0, -4);
     if (name.includes('#')) {
-      itemRarity = (name.split("#")[1] / 100) * edition;
+      itemRarity = Number(name.split("#")[1]);
     }
     else {
-      itemRarity = edition / total;
+      itemRarity = Number((edition / total)/edition)*100;
     }
     return itemRarity;
   };
 
   const cleanName = (_str) => {
-    let name = _str.slice(0, -4).replace('#', "");
+    let name = _str.slice(0, -4).split('#')[0];
     return name;
   };
 
@@ -88,9 +88,9 @@ module.exports.generateNFt = async function (layersDir, buildDir, layersOrder, f
       const rand = Math.random();
       let element = _layer.elements[Math.floor(rand * _layer.number)] ? _layer.elements[Math.floor(rand * _layer.number)] : null;
       if (element) {
-        let rarityR = Math.round(element.rarity);
+        let total_occurence = (element.rarity*edition)/100;
         let count = occurence[_layer.name].filter((val) => val == element.id).length;
-        if (count < rarityR || (element.rarity > 0 && rarityR == 0 && count == 0 )) {
+        if (count < total_occurence) {
           occurence[_layer.name].push(element.id);
           addAttributes(element, _layer);
           const image = await loadImage(`${_layer.location}${element.fileName}`);
