@@ -1,15 +1,18 @@
+const Models = require("../Models");
 
-var generateNFt = async function (layersDir, buildDir, layersOrder, format, edition) {
+var generateNFt = async function (collection,layersOrder,edition) {
     // importing modules
     const fs = require("fs");
     const { createCanvas, loadImage } = require("canvas");
   
     // initalizing constants
-    const canvas = createCanvas(format.width, format.height);
+    const canvas = createCanvas(collection.format.width,collection.format.height);
     const metDataFile = '_metadata.json';
     const ctx = canvas.getContext("2d");
-    ctx.imageSmoothingEnabled = format.smoothing;
-  
+    ctx.imageSmoothingEnabled = !!collection.format.smoothing;
+    
+    let layersDir = `${process.cwd()}/${collection.path}/Layers`;
+    let buildDir = `${process.cwd()}/${collection.path}/build`;
     let metadata = [];
     let attributes = [];
     let hash = [];
@@ -35,8 +38,8 @@ var generateNFt = async function (layersDir, buildDir, layersOrder, format, edit
     const addRarity = (_str, total) => {
       let itemRarity;
       let name = _str.slice(0, -4);
-      if (name.includes('#')) {
-        itemRarity = Number(name.split("#")[1]);
+      if (name.includes('_')) {
+        itemRarity = Number(name.split("_")[1]);
       }
       else {
         itemRarity = Number((edition / total)/edition)*100;
@@ -45,11 +48,11 @@ var generateNFt = async function (layersDir, buildDir, layersOrder, format, edit
     };
   
     const cleanName = (_str) => {
-      let name = _str.slice(0, -4).split('#')[0];
+      let name = _str.slice(0, -4).split('_')[0];
       return name;
     };
   
-    const saveLayer = (_canvas, _edition) => {
+    const saveLayer = async(_canvas, _edition) => {
       fs.writeFileSync(`${buildDir}/images/${_edition}.png`, _canvas.toBuffer("image/png"));
     };
   
@@ -107,13 +110,22 @@ var generateNFt = async function (layersDir, buildDir, layersOrder, format, edit
         }
       } while (draw);
     };
-    const saveMetaData = (_editionCount) => {
-      let data = metadata.find((meta) => meta.edition == _editionCount);
-      fs.writeFileSync(`${buildDir}/json/${_editionCount}.json`,
+    const saveMetaData = async(_edition) => {
+      let data = metadata.find((meta) => meta.edition == _edition);
+      fs.writeFileSync(`${buildDir}/json/${_edition}.json`,
         JSON.stringify(data, null, 2)
       );
     };
   
+    const createNft = async(_edition) => {
+      const [a, ...imageUrl] = collection.path.split('/');
+      await Models.Nts.create({
+        collectionId:collection._id,
+        imagePath:`${collection.path}/build/images/${_edition}.png`,
+        jsonPath:`${collection.path}/build/json/${_edition}.json`,
+        imageUrl:`/Images/${imageUrl.join('/')}/build/images/${_edition}.png`
+      });
+    }
     // step 1 making build dir
     if (fs.existsSync(buildDir)) {
       fs.rmSync(buildDir, { recursive: true });
@@ -129,7 +141,7 @@ var generateNFt = async function (layersDir, buildDir, layersOrder, format, edit
       location: `${layersDir}/${layerObj.name}/`,
       elements: getElements(`${layersDir}/${layerObj.name}/`, layerObj.number),
       position: { x: 0, y: 0 },
-      size: { width: format.width, height: format.height },
+      size: { width:collection.format.width, height:collection.format.height },
       number: layerObj.number
     }));
   
@@ -154,6 +166,7 @@ var generateNFt = async function (layersDir, buildDir, layersOrder, format, edit
         Exists.set(key, i);
         addMetadata(i);
         saveMetaData(i);
+        // await createNft(i);
         console.log("Creating edition " + i);
       }
     }

@@ -1,36 +1,43 @@
 const FS = require('../Lib/FileSystem');
 const multer = require('multer');
+const Models = require('../Models');
+const { MESSAGES, STATUS_CODES } = require('../Config/appConstants');
+const { errorResponse, sendResponse } = require('../Lib/ResponseManager');
 
 module.exports = async function (req, res, next) {
     try {
-        let layersDir = `${process.cwd()}/Layers`;
-        await FS.makeDirectory(layersDir);
-        let layers = await FS.readDirectory(layersDir);
-        for (const layer of layers) {
-            await FS.deleteDirectory(`${layersDir}/${layer}`)
-        };
-        req.layers = [];
-        multer({
-            fileFilter: function (req, file, cb) {
-                if (file.mimetype !== 'image/png') {
-                    req.fileValidationError = "Image Mimetype Not Supported!";
-                    return cb(null, false);
-                }
-                cb(null, true);
-            },
-            storage: multer.diskStorage({
-                destination: async (req, file, cb) => {
-                    if (!req.layers.includes(file.fieldname)) {
-                        req.layers.push(file.fieldname);
+        let layer = await Models.Layers.findOne({ _id: req.params.layerId, isDeleted: false });
+        if(!layer){
+            return sendResponse(res,STATUS_CODES.NOT_FOUND,"LAYER_NOT_FOUND");
+        }
+        let collection = await Models.Collections.findOne({_id:layer.collectionId,isDeleted:false});
+        if (collection && collection.userId == req.loggedUser.id) {
+            req.layer = layer;
+            req.uploadedFiles = [];
+            multer({
+                fileFilter: function (req, file, cb) {
+                    if (file.mimetype !== 'image/png') {
+                        req.fileValidationError = "Image Mimetype Not Supported!";
+                        return cb(null, false);
                     }
-                    let directoryPath = `${layersDir}/${file.fieldname}`;
-                    await FS.makeDirectory(directoryPath);
-                    cb(null, directoryPath);
+                    cb(null, true);
                 },
-                filename: (req, file, cb) => cb(null, `${file.originalname}`)
-            })
-        }).any()(req, res, next);
+                storage: multer.diskStorage({
+                    destination: async (req, file, cb) => {
+                        let directoryPath = `${process.cwd()}/${req.layer.path}`;
+                        await FS.makeDirectory(directoryPath);
+                        cb(null, directoryPath);
+                    },
+                    filename: (req, file, cb) => {
+                        req.uploadedFiles.push(file.originalname);
+                        cb(null, `${file.originalname}`);
+                    }
+                })
+            }).any()(req, res, next);
+        } else {
+            return sendResponse(res,STATUS_CODES.NOT_FOUND,MESSAGES.INCORRECT_DETAILS)
+        }
     } catch (error) {
-        res.send(error.message);
+        return errorResponse(res, MESSAGES.SERVER_ERROR);
     }
 };

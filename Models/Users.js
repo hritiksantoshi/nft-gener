@@ -28,15 +28,7 @@ const UserModel = new Schema({
     isBlocked:{
         type: Schema.Types.Boolean,
         default: false
-    },
-    createdOn: { 
-        type: Schema.Types.Date, 
-        default: new Date() 
-    },
-    updatedOn: { 
-        type: Schema.Types.Date, 
-        default: new Date() 
     }
-});
+},{timestamps:true});
 
 module.exports = mongoose.model('users', UserModel);

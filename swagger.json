@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NFT Generator REST APIs",
+    "description": "Given Below Are Docs For NFT Generator REST APIs",
+    "contact": {
+      "name": "Sanamdeep Kajla",
+      "email": "kajlasanamdeep@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Local Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "accessToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "accessToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User APIs"
+    }
+  ],
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "tags":["User"],
+        "security":[],
+        "summary": "User Registration API",
+        "requestBody":{
+          "description":"Enter Registration Details",
+          "content":{
+            "application/x-www-form-urlencoded":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "userName":{
+                    "type":"string"
+                  },
+                  "email":{
+                    "type":"string",
+                    "format":"email"
+                  },
+                  "password":{
+                    "type":"string",
+                    "format":"password"
+                  }
+                },
+                "required":["email","password","userName"]
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags":["User"],
+        "security":[],
+        "summary": "User Login API",
+        "requestBody":{
+          "description":"Enter Login Details",
+          "content":{
+            "application/x-www-form-urlencoded":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "email":{
+                    "type":"string",
+                    "format":"email"
+                  },
+                  "password":{
+                    "type":"string",
+                    "format":"password"
+                  }
+                },
+                "required":["email","password"]
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/user/createCollection": {
+      "post": {
+        "tags":["User"],
+        "summary": "Create Collection API",
+        "requestBody":{
+          "description":"Create Collection",
+          "content":{
+            "application/x-www-form-urlencoded":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "name":{
+                    "type":"string"
+                  },
+                  "height":{
+                    "type":"number"
+                  },
+                  "width":{
+                    "type":"number"
+                  }
+                },
+                "required":["name","height","width"]
+              }
+            }
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/user/getCollections": {
+      "get": {
+        "tags":["User"],
+        "summary": "Get User Collections API",
+        "responses": {}
+      }
+    },
+    "/api/user/addLayer/{collectionId}": {
+      "post": {
+        "tags":["User"],
+        "summary": "Add Layer to Collection API",
+        "requestBody":{
+          "description":"Add Layer",
+          "content":{
+            "application/x-www-form-urlencoded":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "name":{
+                    "type":"string"
+                  }
+                },
+                "required":["name"]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/getLayers/{collectionId}": {
+      "get": {
+        "tags":["User"],
+        "summary": "get Collection Layers API",
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/uploadImages/{layerId}": {
+      "post": {
+        "tags":["User"],
+        "summary": "Uploads Images to Collection Layer API",
+        "requestBody":{
+          "description":"Select Images to Upload To Layer",
+          "content":{
+            "multipart/form-data":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "uploadImage":{
+                    "type":"string",
+                    "format":"binary"
+                  }
+                },
+                "required":["uploadImage"]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "layerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/getImages/{layerId}": {
+      "get": {
+        "tags":["User"],
+        "summary": "get Images of Layer from Collection API",
+        "parameters": [
+          {
+            "name": "layerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/user/generateNFT/{collectionId}": {
+      "post": {
+        "tags":["User"],
+        "summary": "generate Nfts from Collection API",
+        "requestBody":{
+          "description":"Enter No. of Nfts to generate",
+          "content":{
+            "application/x-www-form-urlencoded":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "editions":{
+                    "type":"number"
+                  }
+                },
+                "required":["editions"]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  }
+}

@@ -1,7 +1,15 @@
 const router = require('express').Router();
+const { DATABASE } = require('../Config/appConstants');
 const Controllers = require('../controllers');
 const Middlewares = require('../middlewares');
 router.post('/register',Controllers.UserController.createUser);
 router.post('/login',Controllers.UserController.login);
-router.post('/generateNFT', Middlewares.UploadFiles,Controllers.UserController.createNft);
+router.use(Middlewares.Authorize(DATABASE.USER_TYPES.USER));
+router.post('/createCollection',Controllers.UserController.createCollection);
+router.get('/getCollections',Controllers.UserController.getCollections);
+router.post('/addLayer/:collectionId',Controllers.UserController.addLayer);
+router.get('/getLayers/:collectionId',Controllers.UserController.getLayers);
+router.post('/uploadImages/:layerId',Middlewares.UploadFiles,Controllers.UserController.uploadImages);
+router.get('/getImages/:layerId',Controllers.UserController.getImages);
+router.post('/generateNFT/:collectionId',Controllers.UserController.generateNfts);
 module.exports = router;

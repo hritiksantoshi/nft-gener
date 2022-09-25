@@ -1,19 +1,21 @@
-// initalizing constants
+// initalizing modules
 const path = require('path');
 const express = require('express');
-const { APP_CONSTANTS } = require('./Config');
-const DB = require('./Lib/Database');
+const swaggerUI = require('swagger-ui-express');
 
-// importing modules
+
+// importing constants
 const app = express();
 const Routes = require('./Routes');
-// const controllers = require('./Controllers');
-// const middlewares = require('./middlewares');
+const { APP_CONSTANTS } = require('./Config');
+const DB = require('./Lib/Database');
+const swaggerJson = require('./swagger.json');
 
 // initalizing Apis
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use('/images', express.static(path.join(__dirname, './build/images')));
+app.use('/Images', express.static(path.join(__dirname, './Uploads')));
+app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerJson));
 app.use('/api',Routes);
 
 // connecting Database
