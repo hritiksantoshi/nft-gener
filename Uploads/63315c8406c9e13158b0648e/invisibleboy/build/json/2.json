@@ -1,0 +1,45 @@
+{
+  "hash": "02112231",
+  "decodedHash": [
+    {
+      "0": 2
+    },
+    {
+      "1": 1
+    },
+    {
+      "2": 2
+    },
+    {
+      "3": 1
+    }
+  ],
+  "edition": 2,
+  "date": 1664189786961,
+  "attributes": [
+    {
+      "id": 2,
+      "layer": "background",
+      "name": "2",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "Dress",
+      "name": "1",
+      "rarity": 50
+    },
+    {
+      "id": 2,
+      "layer": "Hair",
+      "name": "2",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "Accessories",
+      "name": "1",
+      "rarity": 50
+    }
+  ]
+}

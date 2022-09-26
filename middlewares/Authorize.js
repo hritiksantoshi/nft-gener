@@ -46,7 +46,7 @@ module.exports = (userType) => async (req, res, next) => {
 
     } catch (error) {
 
-        return errorResponse(res, MESSAGES.INVALID_TOKEN);
+        return forBiddenResponse(res, MESSAGES.INVALID_TOKEN);
 
     }
 }

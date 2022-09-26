@@ -31,7 +31,7 @@ const forBiddenResponse = async (res, message) => {
 	});
 };
 
-const validationError = async (res, error) => {
+const validationErrorResponse = async (res, error) => {
 	const code = statusCodes.UNPROCESSABLE_ENTITY;
 	return res.status(code).send({
 		statusCode: code,
@@ -53,5 +53,5 @@ module.exports = {
 	sendResponse: sendResponse,
 	unauthorizedResponse: unauthorizedResponse,
 	forBiddenResponse: forBiddenResponse,
-	validationError: validationError
+	validationErrorResponse: validationErrorResponse
 }

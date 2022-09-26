@@ -8,7 +8,7 @@ module.exports = async function (req, res, next) {
     try {
         let layer = await Models.Layers.findOne({ _id: req.params.layerId, isDeleted: false });
         if(!layer){
-            return sendResponse(res,STATUS_CODES.NOT_FOUND,"LAYER_NOT_FOUND");
+            return sendResponse(res,STATUS_CODES.NOT_FOUND,MESSAGES.LAYER_NOT_FOUND);
         }
         let collection = await Models.Collections.findOne({_id:layer.collectionId,isDeleted:false});
         if (collection && collection.userId == req.loggedUser.id) {
@@ -17,7 +17,7 @@ module.exports = async function (req, res, next) {
             multer({
                 fileFilter: function (req, file, cb) {
                     if (file.mimetype !== 'image/png') {
-                        req.fileValidationError = "Image Mimetype Not Supported!";
+                        req.fileValidationError = "IMAGE_MIMETYPE_NOT_SUPPORTED!";
                         return cb(null, false);
                     }
                     cb(null, true);
@@ -35,7 +35,7 @@ module.exports = async function (req, res, next) {
                 })
             }).any()(req, res, next);
         } else {
-            return sendResponse(res,STATUS_CODES.NOT_FOUND,MESSAGES.INCORRECT_DETAILS)
+            return sendResponse(res,STATUS_CODES.NOT_FOUND,MESSAGES.COLLECTION_NOT_FOUND)
         }
     } catch (error) {
         return errorResponse(res, MESSAGES.SERVER_ERROR);

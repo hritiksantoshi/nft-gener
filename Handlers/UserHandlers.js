@@ -20,7 +20,7 @@ module.exports.register = async function (payload) {
             payload.password = await Bcrypt.hashPassword(payload.password);
             user = await Model.Users.create(payload);
             let accessToken = JWT.Sign(user);
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.USER_REGISTER_SUCCESSFULLY, { accessToken });
+            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.USER_REGISTER_SUCCESSFULLY, { accessToken });
         };
     } catch (error) {
         throw error;
@@ -38,7 +38,7 @@ module.exports.login = async function (payload) {
         if (user) {
             let passwordIsCorrect = await Bcrypt.comparePassword(payload.password, user.password);
             if (!passwordIsCorrect) {
-                return UniversalFunctions.returnError(STATUS_CODES.UNPROCESSABLE_ENTITY, MESSAGES.INVALID_PASSWORD);
+                return UniversalFunctions.returnError(STATUS_CODES.BAD_REQUEST, MESSAGES.INVALID_PASSWORD);
             }
             let accessToken = JWT.Sign(user);
             return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.USER_LOGIN_SUCCESSFULLY, { accessToken });
@@ -58,7 +58,7 @@ module.exports.createCollection = async function (payload) {
             let { height, width, name } = payload.body;
             let existing = await Model.Collections.findOne({ userId: loggedUser._id, name, isDeleted: false });
             if (existing) {
-                return UniversalFunctions.returnError(STATUS_CODES.DUPLICATE, MESSAGES.DUPLICATE_ENTRY);
+                return UniversalFunctions.returnError(STATUS_CODES.UNPROCESSABLE_ENTITY, MESSAGES.COLLECTION_ALREADY_EXIST);
             }
             let format = {
                 height: parseInt(height),
@@ -76,7 +76,7 @@ module.exports.createCollection = async function (payload) {
             await FS.makeDirectory(layersDir);
             await FS.makeDirectory(buildDir);
 
-            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.SUCCESS, { collection });
+            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.COLLECTION_CREATED_SUCCESSFULLY, { collection });
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
@@ -92,7 +92,7 @@ module.exports.getCollections = async function (payload) {
         let { loggedUser } = payload;
         if (loggedUser) {
             let collections = await Model.Collections.find({ userId: loggedUser._id, isDeleted: false });
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { collections });
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.COLLECTIONS_LOADED_SUCCESSFULLY, { collections });
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
@@ -109,7 +109,7 @@ module.exports.addLayer = async function (payload) {
         if (loggedUser) {
             let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: payload.params.collectionId, isDeleted: false });
             if (!collection) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "COLLECTION_NOT_FOUND");
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             }
             let path = `${collection.path}/Layers/${name}`;
             let layer = await Model.Layers.findOne({
@@ -118,7 +118,7 @@ module.exports.addLayer = async function (payload) {
                 isDeleted: false
             });
             if (layer) {
-                return UniversalFunctions.returnError(STATUS_CODES.UNPROCESSABLE_ENTITY, "Layer Name Already Exist!");
+                return UniversalFunctions.returnError(STATUS_CODES.UNPROCESSABLE_ENTITY, MESSAGES.LAYER_ALREADY_EXIST);
             }
             await FS.makeDirectory(`${process.cwd()}/${path}`);
             layer = await Model.Layers.create({
@@ -130,7 +130,7 @@ module.exports.addLayer = async function (payload) {
             await Model.Collections.findByIdAndUpdate(collection._id, {
                 layersOrder: collection.layersOrder
             });
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { layer });
+            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.LAYER_CREATED_SUCCESSFULLY, { layer });
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
@@ -146,10 +146,10 @@ module.exports.getLayers = async (payload) => {
         if (loggedUser) {
             let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: payload.params.collectionId, isDeleted: false });
             if (!collection) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "COLLECTION_NOT_FOUND");
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             };
             let layers = await Model.Layers.find({ collectionId: collection._id, isDeleted: false });
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { layers });
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.LAYERS_LOADED_SUCCESSFULLY, { layers });
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
@@ -184,7 +184,7 @@ module.exports.uploadImages = async function (payload) {
                 }
             };
             let images = await Model.Images.insertMany(Images);
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { images });
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.IMAGES_UPLOADED_SUCCESSFULLY, { images });
         }
     } catch (error) {
         throw error;
@@ -197,14 +197,14 @@ module.exports.getImages = async function (payload) {
         if (loggedUser) {
             let layer = await Model.Layers.findOne({ _id: payload.params.layerId, isDeleted: false });
             if (!layer) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "LAYER_NOT_FOUND");
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
             };
             let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: layer.collectionId, isDeleted: false });
             if (!collection) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "COLLECTION_NOT_FOUND");
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             };
             let Images = await Model.Images.find({ layerId: layer._id, isDeleted: false });
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { Images });
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.IMAGES_LOADED_SUCCESSFULLY, { Images });
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
@@ -222,7 +222,7 @@ module.exports.generateNfts = async function (payload) {
             let { editions } = payload.body;
             let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: payload.params.collectionId, isDeleted: false });
             if (!collection) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "COLLECTION_NOT_FOUND");
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND,MESSAGES.COLLECTION_NOT_FOUND);
             };
             for (const layerId of collection.layersOrder) {
                 let layer = await Model.Layers.findOne({_id:layerId,isDeleted:false});
@@ -230,13 +230,13 @@ module.exports.generateNfts = async function (payload) {
                     let Images = await Model.Images.find({layerId,isDeleted:false});
                     for (let Image of Images) {
                         if(!fs.existsSync(`${process.cwd()}/${Image.imagePath}`)){
-                            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "IMAGE_NOT_FOUND");
+                            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND,MESSAGES.IMAGE_NOT_FOUND);
                         }
                     }
                     layersOrder.push({ name: layer.name, number:Images.length });
                 }
                 else{
-                    return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, "LAYER_NOT_FOUND");
+                    return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
                 }
             };
             await hashlips.generateNFt(collection,layersOrder,parseInt(editions));
