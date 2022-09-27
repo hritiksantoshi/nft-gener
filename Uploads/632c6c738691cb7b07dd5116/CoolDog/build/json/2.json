@@ -1,47 +1,47 @@
 {
-  "hash": "03112332455262",
+  "hash": "04152232435563",
   "decodedHash": [
     {
-      "0": 3
+      "0": 4
     },
     {
-      "1": 1
+      "1": 5
     },
     {
-      "2": 3
+      "2": 2
     },
     {
       "3": 2
     },
     {
-      "4": 5
+      "4": 3
     },
     {
-      "5": 2
+      "5": 5
     },
     {
-      "6": 2
+      "6": 3
     }
   ],
   "edition": 2,
-  "date": 1664110619384,
+  "date": 1664271893647,
   "attributes": [
     {
-      "id": 3,
+      "id": 4,
       "layer": "background",
-      "name": "3",
-      "rarity": 30
-    },
-    {
-      "id": 1,
-      "layer": "body",
-      "name": "1",
+      "name": "4",
       "rarity": 20
     },
     {
-      "id": 3,
+      "id": 5,
+      "layer": "body",
+      "name": "5",
+      "rarity": 20
+    },
+    {
+      "id": 2,
       "layer": "eyes",
-      "name": "3",
+      "name": "2",
       "rarity": 20
     },
     {
@@ -51,22 +51,22 @@
       "rarity": 50
     },
     {
-      "id": 5,
+      "id": 3,
       "layer": "outfits",
-      "name": "6",
+      "name": "4",
       "rarity": 20
     },
     {
-      "id": 2,
+      "id": 5,
       "layer": "beard",
-      "name": "2",
+      "name": "8",
       "rarity": 20
     },
     {
-      "id": 2,
+      "id": 3,
       "layer": "glasses",
-      "name": "2",
-      "rarity": 10
+      "name": "3",
+      "rarity": 30
     }
   ]
 }

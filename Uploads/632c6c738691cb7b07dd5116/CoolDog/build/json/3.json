@@ -1,14 +1,14 @@
 {
-  "hash": "04122431415565",
+  "hash": "03142331415361",
   "decodedHash": [
     {
-      "0": 4
+      "0": 3
     },
     {
-      "1": 2
+      "1": 4
     },
     {
-      "2": 4
+      "2": 3
     },
     {
       "3": 1
@@ -17,31 +17,31 @@
       "4": 1
     },
     {
-      "5": 5
+      "5": 3
     },
     {
-      "6": 5
+      "6": 1
     }
   ],
   "edition": 3,
-  "date": 1664110621066,
+  "date": 1664271894831,
   "attributes": [
     {
-      "id": 4,
+      "id": 3,
       "layer": "background",
-      "name": "4",
-      "rarity": 20
-    },
-    {
-      "id": 2,
-      "layer": "body",
-      "name": "2",
-      "rarity": 20
+      "name": "3",
+      "rarity": 30
     },
     {
       "id": 4,
-      "layer": "eyes",
+      "layer": "body",
       "name": "4",
+      "rarity": 20
+    },
+    {
+      "id": 3,
+      "layer": "eyes",
+      "name": "3",
       "rarity": 20
     },
     {
@@ -57,15 +57,15 @@
       "rarity": 20
     },
     {
-      "id": 5,
+      "id": 3,
       "layer": "beard",
-      "name": "8",
+      "name": "5",
       "rarity": 20
     },
     {
-      "id": 5,
+      "id": 1,
       "layer": "glasses",
-      "name": "5",
+      "name": "1",
       "rarity": 20
     }
   ]

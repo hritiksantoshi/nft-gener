@@ -13,6 +13,10 @@
     {
       "url": "http://localhost:8000",
       "description": "Local Server"
+    },
+    {
+      "url":"https://nftsgenerator.herokuapp.com",
+      "description":"Live Server"
     }
   ],
   "components": {
