@@ -27,10 +27,8 @@ module.exports.createCollectionSchema = {
 
 module.exports.addLayerSchema = {
     body: joi.object({
+        collectionId: joi.string().hex().length(24).required(),
         name: joi.string().required()
-    }),
-    params: joi.object({
-        collectionId: joi.string().hex().length(24).required()
     })
 };
 
@@ -53,7 +51,8 @@ module.exports.getImagesSchema = {
 };
 
 module.exports.generateNFTSchema = {
-    params: joi.object({
-        collectionId: joi.string().hex().length(24).required()
+    body: joi.object({
+        collectionId: joi.string().hex().length(24).required(),
+        editions:joi.number().positive().required()
     })
 };

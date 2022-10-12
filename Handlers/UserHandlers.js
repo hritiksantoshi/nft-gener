@@ -105,9 +105,9 @@ module.exports.getCollections = async function (payload) {
 module.exports.addLayer = async function (payload) {
     try {
         let { loggedUser } = payload;
-        let { name } = payload.body;
+        let { name, collectionId } = payload.body;
         if (loggedUser) {
-            let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: payload.params.collectionId, isDeleted: false });
+            let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: collectionId, isDeleted: false });
             if (!collection) {
                 return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             }
@@ -219,31 +219,60 @@ module.exports.generateNfts = async function (payload) {
         let { loggedUser } = payload;
         if (loggedUser) {
             let layersOrder = [];
-            let { editions } = payload.body;
-            let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: payload.params.collectionId, isDeleted: false });
+            let { editions, collectionId } = payload.body;
+            let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: collectionId, isDeleted: false });
             if (!collection) {
-                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND,MESSAGES.COLLECTION_NOT_FOUND);
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             };
             for (const layerId of collection.layersOrder) {
-                let layer = await Model.Layers.findOne({_id:layerId,isDeleted:false});
+                let layer = await Model.Layers.findOne({ _id: layerId, isDeleted: false });
                 if (layer && fs.existsSync(`${process.cwd()}/${layer.path}`)) {
-                    let Images = await Model.Images.find({layerId,isDeleted:false});
+                    let Images = await Model.Images.find({ layerId, isDeleted: false });
                     for (let Image of Images) {
-                        if(!fs.existsSync(`${process.cwd()}/${Image.imagePath}`)){
-                            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND,MESSAGES.IMAGE_NOT_FOUND);
+                        if (!fs.existsSync(`${process.cwd()}/${Image.imagePath}`)) {
+                            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.IMAGE_NOT_FOUND);
                         }
                     }
-                    layersOrder.push({ name: layer.name, number:Images.length });
+                    layersOrder.push({ name: layer.name, number: Images.length });
                 }
-                else{
+                else {
                     return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
                 }
             };
-            await hashlips.generateNFt(collection,layersOrder,parseInt(editions));
+            await hashlips.generateNFt(collection, layersOrder, parseInt(editions));
             // let nfts = await Model.Nts.find({collectionId:collection._id,isDeleted:false});
-            let nfts =  (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name)=>`/Images/${collection.path.replace('Uploads','')}/build/images/${name}`);
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS,MESSAGES.SUCCESS,{nfts});
+            let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { nfts });
         }
+        else {
+            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+module.exports.deleteCollection = async function (payload) {
+    try {
+        let { loggedUser } = payload;
+        if (loggedUser) {
+            let { collectionId } = payload.params;
+            let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: collectionId });
+            if (!collection) {
+                return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
+            };
+            for (const layerId of collection.layersOrder) {
+                await Model.Images.deleteMany({ layerId });    // deleting images from database
+            };
+            await Model.Layers.deleteMany({ collectionId });    // deleting layers from database
+            fs.rmSync(`${process.cwd()}/${collection.path}`, { recursive: true });  // deleting collection folder
+            await Model.Collections.deleteOne({ _id: collectionId }); // deleting collection from database
+            return UniversalFunctions.returnError(STATUS_CODES.SUCCESS, MESSAGES.COLLECTION_DELETED_SUCCESSFULLY);
+        }
+        else {
+            return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
+        };
+
     } catch (error) {
         throw error;
     }

@@ -83,3 +83,12 @@ module.exports.generateNfts = async (req, res) => {
         return errorResponse(res, error);
     }
 };
+
+module.exports.deleteCollection = async (req, res) => {
+    try {
+        const response = await UserHandlers.deleteCollection(req);
+        await sendResponse(res, response.status, response.message, response.data);
+    } catch (error) {
+        return errorResponse(res, error);
+    }
+};

@@ -10,10 +10,6 @@ const LayerModel = new Schema({
     },
     path: {
         type: Schema.Types.String, index: true, required: true
-    },
-    isDeleted: {
-        type: Schema.Types.Boolean,
-        default: false
     }
 }, { timestamps: true });
 

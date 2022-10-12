@@ -26,6 +26,20 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       }
+    },
+    "parameters":{
+      "collectionId":{
+        "name": "collectionId",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      "layerId":{
+        "name": "layerId",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
     }
   },
   "security": [
@@ -141,7 +155,7 @@
         "responses": {}
       }
     },
-    "/api/user/addLayer/{collectionId}": {
+    "/api/user/addLayer": {
       "post": {
         "tags":["User"],
         "summary": "Add Layer to Collection API",
@@ -154,21 +168,16 @@
                 "properties":{
                   "name":{
                     "type":"string"
+                  },
+                  "collectionId":{
+                    "type":"string"
                   }
                 },
-                "required":["name"]
+                "required":["name","collectionId"]
               }
             }
           }
         },
-        "parameters": [
-          {
-            "name": "collectionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "responses": {}
       }
     },
@@ -178,10 +187,7 @@
         "summary": "get Collection Layers API",
         "parameters": [
           {
-            "name": "collectionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "$ref":"#components/parameters/collectionId"
           }
         ],
         "responses": {}
@@ -210,10 +216,7 @@
         },
         "parameters": [
           {
-            "name": "layerId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "$ref":"#components/parameters/layerId"
           }
         ],
         "responses": {}
@@ -225,16 +228,13 @@
         "summary": "get Images of Layer from Collection API",
         "parameters": [
           {
-            "name": "layerId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "$ref":"#components/parameters/layerId"
           }
         ],
         "responses": {}
       }
     },
-    "/api/user/generateNFT/{collectionId}": {
+    "/api/user/generateNFT": {
       "post": {
         "tags":["User"],
         "summary": "generate Nfts from Collection API",
@@ -247,21 +247,16 @@
                 "properties":{
                   "editions":{
                     "type":"number"
+                  },
+                  "collectionId":{
+                    "type":"string"
                   }
                 },
-                "required":["editions"]
+                "required":["editions","collectionId"]
               }
             }
           }
         },
-        "parameters": [
-          {
-            "name": "collectionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "responses": {}
       }
     }

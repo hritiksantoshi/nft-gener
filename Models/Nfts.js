@@ -13,10 +13,6 @@ const NftModel = new Schema({
     },
     imagePath: {
         type: Schema.Types.String, index: true, required: true
-    },
-    isDeleted: {
-        type: Schema.Types.Boolean,
-        default: false
     }
 }, { timestamps: true });
 

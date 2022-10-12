@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CollectionModel = new Schema({
     userId: {
-        type: Schema.Types.ObjectId,ref:'users', index: true, required: true
+        type: Schema.Types.ObjectId, ref: 'users', index: true, required: true
     },
     name: {
         type: Schema.Types.String, index: true, required: true
@@ -13,7 +13,7 @@ const CollectionModel = new Schema({
             height: Schema.Types.Number,
             width: Schema.Types.Number
         }),
-        required:true
+        required: true
     },
     layersOrder: {
         type: Array(Schema.Types.ObjectId),
@@ -21,10 +21,6 @@ const CollectionModel = new Schema({
     },
     path: {
         type: Schema.Types.String, index: true, required: true
-    },
-    isDeleted: {
-        type: Schema.Types.Boolean,
-        default: false
     }
 }, { timestamps: true });
 
