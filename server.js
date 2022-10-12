@@ -28,8 +28,8 @@ const corsOptions = {
 
 // initalizing Apis
 app.use(express.json());
-app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
+app.use(cors(corsOptions));
 app.use('/Images', express.static(path.join(__dirname, './Uploads')));
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
 app.use('/api', Routes);
