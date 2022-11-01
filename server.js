@@ -29,6 +29,19 @@ const origins = [
 // initalizing Apis
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", 1);
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept,authtoken"
+    );
+    next();
+  });
 app.use(cors());
 app.options('*', cors());
 app.use('/Images', express.static(path.join(__dirname, './Uploads')));
