@@ -29,6 +29,7 @@ const origins = [
 // initalizing Apis
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", 1);
@@ -42,8 +43,9 @@ app.use(function(req, res, next) {
     );
     next();
   });
-app.use(cors());
-app.options('*', cors());
+  app.use(cors());
+// app.options('*', cors());
+
 app.use('/Images', express.static(path.join(__dirname, './Uploads')));
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
 app.use('/api', Routes);
