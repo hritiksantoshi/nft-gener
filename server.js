@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const swaggerUI = require('swagger-ui-express');
-
+var timeout = require('connect-timeout')
 
 // importing constants
 const app = express();
@@ -29,7 +29,8 @@ const origins = [
 // initalizing Apis
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(timeout('60s'));
+app.use(haltOnTimedout);
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", 1);
@@ -50,6 +51,9 @@ app.use('/Images', express.static(path.join(__dirname, './Uploads')));
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
 app.use('/api', Routes);
 
+function haltOnTimedout (req, res, next) {
+    if (!req.timedout) next()
+  }
 // connecting Database
 DB.connect().then((connected) => {
 
