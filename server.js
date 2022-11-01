@@ -30,6 +30,7 @@ const origins = [
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.options('*', cors());
 app.use('/Images', express.static(path.join(__dirname, './Uploads')));
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
 app.use('/api', Routes);
