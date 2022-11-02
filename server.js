@@ -45,7 +45,8 @@ app.use(function(req, res, next) {
     next();
   });
   app.use(cors());
-// app.options('*', cors());
+
+//  app.options('*', cors());
 
 app.use('/Images', express.static(path.join(__dirname, './Uploads')));
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
