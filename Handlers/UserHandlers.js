@@ -228,7 +228,7 @@ module.exports.generateNfts = async function (payload) {
             console.log(collection.name);
             for (const layerId of collection.layersOrder) {
                 console.log(layerId,"layerID");
-                let layer = await Model.Layers.find({ _id: layerId, isDeleted: false });
+                let layer = await Model.Layers.findOne({ _id: layerId, isDeleted: false });
                 console.log(layer,"ghjjk");
                 console.log(fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`));
                 console.log(`${process.cwd()}/${layer.path}`);
