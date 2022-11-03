@@ -1,4 +1,4 @@
-const { validationError } = require("../Lib/ResponseManager");
+const { validationErrorResponse } = require("../Lib/ResponseManager");
 
 module.exports = function (schema) {
 
@@ -21,7 +21,7 @@ module.exports = function (schema) {
             }
             next();
         } catch (error) {
-            return validationError(res, error);
+            return validationErrorResponse(res, error);
         }
     }
 }

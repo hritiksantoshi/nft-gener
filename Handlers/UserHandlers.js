@@ -220,13 +220,18 @@ module.exports.generateNfts = async function (payload) {
         if (loggedUser) {
             let layersOrder = [];
             let { editions, collectionId } = payload.body;
+            console.log(payload.body);
             let collection = await Model.Collections.findOne({ userId: loggedUser._id, _id: collectionId, isDeleted: false });
             if (!collection) {
                 return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.COLLECTION_NOT_FOUND);
             };
+            console.log(collection.name);
             for (const layerId of collection.layersOrder) {
                 let layer = await Model.Layers.findOne({ _id: layerId, isDeleted: false });
-                if (layer && fs.existsSync(`${process.cwd()}/${layer.path}`)) {
+                console.log(fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`));
+                console.log(`${process.cwd()}/${layer.path}`);
+                if (layer && fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`)) {
+                   
                     let Images = await Model.Images.find({ layerId, isDeleted: false });
                     for (let Image of Images) {
                         if (!fs.existsSync(`${process.cwd()}/${Image.imagePath}`)) {
@@ -234,14 +239,17 @@ module.exports.generateNfts = async function (payload) {
                         }
                     }
                     layersOrder.push({ name: layer.name, number: Images.length });
+                  
                 }
                 else {
                     return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
                 }
             };
+        
             await hashlips.generateNFt(collection, layersOrder, parseInt(editions));
             // let nfts = await Model.Nts.find({collectionId:collection._id,isDeleted:false});
             let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
+    
             return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { nfts });
         }
         else {

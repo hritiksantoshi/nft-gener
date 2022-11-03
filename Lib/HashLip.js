@@ -54,6 +54,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
   
     const saveLayer = async(_canvas, _edition) => {
       fs.writeFileSync(`${buildDir}/images/${_edition}.png`, _canvas.toBuffer("image/png"));
+
     };
   
     const addMetadata = (_edition) => {
@@ -144,7 +145,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
       size: { width:collection.format.width, height:collection.format.height },
       number: layerObj.number
     }));
-  
+    
     let numDupes = 0;
   
     layersOrder.forEach(({ name }) =>
@@ -166,7 +167,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
         Exists.set(key, i);
         addMetadata(i);
         saveMetaData(i);
-        // await createNft(i);
+       // await createNft(i);
         console.log("Creating edition " + i);
       }
     }
