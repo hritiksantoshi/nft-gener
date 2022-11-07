@@ -1,10 +1,35 @@
 const Models = require("../Models");
-
+const previewfile = require('./preview')
+const previewGIF = require('./preview_gif')
 var generateNFt = async function (collection,layersOrder,edition) {
     // importing modules
+   
     const fs = require("fs");
     const { createCanvas, loadImage } = require("canvas");
-  
+    
+    const preview = {
+      thumbPerRow: 5,
+      thumbWidth: 50,
+      imageRatio:collection.format.height / collection.format.width,
+      imageName: "preview.png",
+    };
+
+    const format = {
+      width: collection.format.width,
+      height: collection.format.height,
+      smoothing: false,
+    };
+     
+    const preview_gif = {
+      numberOfImages: 3,
+      order: "ASC", // ASC, DESC, MIXED
+      repeat: 0,
+      quality: 100,
+      delay: 500,
+      imageName: "preview.gif",
+    };
+    
+   
     // initalizing constants
     const canvas = createCanvas(collection.format.width,collection.format.height);
     const metDataFile = '_metadata.json';
@@ -13,6 +38,8 @@ var generateNFt = async function (collection,layersOrder,edition) {
     
     let layersDir = `${process.cwd()}/${collection.path}/Layers`;
     let buildDir = `${process.cwd()}/${collection.path}/build`;
+    let imageDir = `${process.cwd()}/${collection.path}/build/images`;
+    let previewDir = `${process.cwd()}/${collection.path}/build/preview`;
     let metadata = [];
     let attributes = [];
     let hash = [];
@@ -20,6 +47,16 @@ var generateNFt = async function (collection,layersOrder,edition) {
     const Exists = new Map();
     let occurence = {};
   
+    const loadImg = async (_img) => {
+      return new Promise(async (resolve) => {
+        const loadedImage = await loadImage(`${_img}`);
+        resolve({ loadedImage: loadedImage });
+      });
+    };
+    const imageList = [];
+    const rawdata = fs.readdirSync(imageDir).forEach((file) => {
+      imageList.push(loadImg(`${imageDir}/${file}`));
+    });
     // initalizing functions
     const getElements = (path, total) => {
       return fs
@@ -38,12 +75,12 @@ var generateNFt = async function (collection,layersOrder,edition) {
     const addRarity = (_str, total) => {
       let itemRarity;
       let name = _str.slice(0, -4);
-      if (name.includes('_')) {
-        itemRarity = Number(name.split("_")[1]);
-      }
-      else {
+      // if (name.includes('_')) {
+      //   itemRarity = Number(name.split("_")[0]);
+      // }
+      // else {
         itemRarity = Number((edition / total)/edition)*100;
-      }
+      // }
       return itemRarity;
     };
   
@@ -90,6 +127,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
       do {
         const rand = Math.random();
         let element = _layer.elements[Math.floor(rand * _layer.number)] ? _layer.elements[Math.floor(rand * _layer.number)] : null;
+       
         if (element) {
           let total_occurence = (element.rarity*edition)/100;
           let count = occurence[_layer.name].filter((val) => val == element.id).length;
@@ -106,6 +144,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
               _layer.size.height
             );
             saveLayer(canvas, _edition);
+
             draw = false;
           }
         }
@@ -134,6 +173,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
     fs.mkdirSync(buildDir);
     fs.mkdirSync(`${buildDir}/json`);
     fs.mkdirSync(`${buildDir}/images`);
+    fs.mkdirSync(`${buildDir}/preview`)
   
     // step 2 creating Nfts Files
     const layers = layersOrder.map((layerObj, index) => ({
@@ -145,7 +185,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
       size: { width:collection.format.width, height:collection.format.height },
       number: layerObj.number
     }));
-    
+   
     let numDupes = 0;
   
     layersOrder.forEach(({ name }) =>
@@ -156,7 +196,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
       await layers.forEach(async (layer) => {
         await drawLayer(layer, i);
       });
-  
+     
       let key = hash.toString();
       if (Exists.has(key)) {
         console.log(`Duplicate creation for edition ${i}. Same as edition ${Exists.get(key)}`);
@@ -169,6 +209,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
         saveMetaData(i);
        // await createNft(i);
         console.log("Creating edition " + i);
+       
       }
     }
   
@@ -176,6 +217,11 @@ var generateNFt = async function (collection,layersOrder,edition) {
     fs.stat(`${buildDir}/${metDataFile}`, (err) => {
       if (err == null || err.code === 'ENOENT') {
         fs.writeFileSync(`${buildDir}/json/${metDataFile}`, JSON.stringify(metadata, null, 2));
+        const rawdata = fs.readFileSync(`${process.cwd()}/${collection.path}/build/json/_metadata.json`);
+        const metadataList = JSON.parse(rawdata);
+        previewfile.saveProjectPreviewImage(metadataList,preview,buildDir);
+        previewGIF.saveProjectPreviewGIF(imageList,imageDir,canvas,ctx,preview_gif,format)
+        
       } else {
         console.log('Oh no, error: ', err.code);
       }

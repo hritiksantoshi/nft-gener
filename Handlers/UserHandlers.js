@@ -227,11 +227,8 @@ module.exports.generateNfts = async function (payload) {
             };
             console.log(collection.name);
             for (const layerId of collection.layersOrder) {
-                console.log(layerId,"layerID");
+              
                 let layer = await Model.Layers.findOne({ _id: layerId, isDeleted: false });
-                console.log(layer,"ghjjk");
-                console.log(fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`));
-                console.log(`${process.cwd()}/${layer.path}`);
                 if (layer && fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`)) {
                    
                     let Images = await Model.Images.find({ layerId, isDeleted: false });
@@ -247,11 +244,11 @@ module.exports.generateNfts = async function (payload) {
                     return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
                 }
             };
-        
+          
             await hashlips.generateNFt(collection, layersOrder, parseInt(editions));
             // let nfts = await Model.Nts.find({collectionId:collection._id,isDeleted:false});
-            let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
-    
+            let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`); 
+            
             return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { nfts });
         }
         else {
