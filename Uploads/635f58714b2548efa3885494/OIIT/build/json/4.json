@@ -1,0 +1,36 @@
+{
+  "hash": "041224",
+  "decodedHash": [
+    {
+      "0": 4
+    },
+    {
+      "1": 2
+    },
+    {
+      "2": 4
+    }
+  ],
+  "edition": 4,
+  "date": 1667905906518,
+  "attributes": [
+    {
+      "id": 4,
+      "layer": "BG",
+      "name": "12",
+      "rarity": 7.142857142857142
+    },
+    {
+      "id": 2,
+      "layer": "BODY",
+      "name": "2",
+      "rarity": 20
+    },
+    {
+      "id": 4,
+      "layer": "GLASSES",
+      "name": "4",
+      "rarity": 20
+    }
+  ]
+}

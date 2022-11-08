@@ -1,0 +1,36 @@
+{
+  "hash": "021322",
+  "decodedHash": [
+    {
+      "0": 2
+    },
+    {
+      "1": 3
+    },
+    {
+      "2": 2
+    }
+  ],
+  "edition": 1,
+  "date": 1667905902835,
+  "attributes": [
+    {
+      "id": 2,
+      "layer": "BG",
+      "name": "10",
+      "rarity": 7.142857142857142
+    },
+    {
+      "id": 3,
+      "layer": "BODY",
+      "name": "3",
+      "rarity": 20
+    },
+    {
+      "id": 2,
+      "layer": "GLASSES",
+      "name": "2",
+      "rarity": 40
+    }
+  ]
+}

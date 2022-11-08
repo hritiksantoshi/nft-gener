@@ -1,0 +1,182 @@
+[
+  {
+    "hash": "021322",
+    "decodedHash": [
+      {
+        "0": 2
+      },
+      {
+        "1": 3
+      },
+      {
+        "2": 2
+      }
+    ],
+    "edition": 1,
+    "date": 1667905902835,
+    "attributes": [
+      {
+        "id": 2,
+        "layer": "BG",
+        "name": "10",
+        "rarity": 7.142857142857142
+      },
+      {
+        "id": 3,
+        "layer": "BODY",
+        "name": "3",
+        "rarity": 20
+      },
+      {
+        "id": 2,
+        "layer": "GLASSES",
+        "name": "2",
+        "rarity": 40
+      }
+    ]
+  },
+  {
+    "hash": "061422",
+    "decodedHash": [
+      {
+        "0": 6
+      },
+      {
+        "1": 4
+      },
+      {
+        "2": 2
+      }
+    ],
+    "edition": 2,
+    "date": 1667905904230,
+    "attributes": [
+      {
+        "id": 6,
+        "layer": "BG",
+        "name": "14",
+        "rarity": 7.142857142857142
+      },
+      {
+        "id": 4,
+        "layer": "BODY",
+        "name": "4",
+        "rarity": 20
+      },
+      {
+        "id": 2,
+        "layer": "GLASSES",
+        "name": "2",
+        "rarity": 40
+      }
+    ]
+  },
+  {
+    "hash": "071521",
+    "decodedHash": [
+      {
+        "0": 7
+      },
+      {
+        "1": 5
+      },
+      {
+        "2": 1
+      }
+    ],
+    "edition": 3,
+    "date": 1667905905275,
+    "attributes": [
+      {
+        "id": 7,
+        "layer": "BG",
+        "name": "2#33",
+        "rarity": 7.142857142857142
+      },
+      {
+        "id": 5,
+        "layer": "BODY",
+        "name": "5",
+        "rarity": 20
+      },
+      {
+        "id": 1,
+        "layer": "GLASSES",
+        "name": "1",
+        "rarity": 20
+      }
+    ]
+  },
+  {
+    "hash": "041224",
+    "decodedHash": [
+      {
+        "0": 4
+      },
+      {
+        "1": 2
+      },
+      {
+        "2": 4
+      }
+    ],
+    "edition": 4,
+    "date": 1667905906518,
+    "attributes": [
+      {
+        "id": 4,
+        "layer": "BG",
+        "name": "12",
+        "rarity": 7.142857142857142
+      },
+      {
+        "id": 2,
+        "layer": "BODY",
+        "name": "2",
+        "rarity": 20
+      },
+      {
+        "id": 4,
+        "layer": "GLASSES",
+        "name": "4",
+        "rarity": 20
+      }
+    ]
+  },
+  {
+    "hash": "081125",
+    "decodedHash": [
+      {
+        "0": 8
+      },
+      {
+        "1": 1
+      },
+      {
+        "2": 5
+      }
+    ],
+    "edition": 5,
+    "date": 1667905907688,
+    "attributes": [
+      {
+        "id": 8,
+        "layer": "BG",
+        "name": "3#0",
+        "rarity": 7.142857142857142
+      },
+      {
+        "id": 1,
+        "layer": "BODY",
+        "name": "1",
+        "rarity": 20
+      },
+      {
+        "id": 5,
+        "layer": "GLASSES",
+        "name": "5",
+        "rarity": 10
+      }
+    ]
+  }
+]

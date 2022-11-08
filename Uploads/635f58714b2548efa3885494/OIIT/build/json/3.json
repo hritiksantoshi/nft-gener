@@ -1,0 +1,36 @@
+{
+  "hash": "071521",
+  "decodedHash": [
+    {
+      "0": 7
+    },
+    {
+      "1": 5
+    },
+    {
+      "2": 1
+    }
+  ],
+  "edition": 3,
+  "date": 1667905905275,
+  "attributes": [
+    {
+      "id": 7,
+      "layer": "BG",
+      "name": "2#33",
+      "rarity": 7.142857142857142
+    },
+    {
+      "id": 5,
+      "layer": "BODY",
+      "name": "5",
+      "rarity": 20
+    },
+    {
+      "id": 1,
+      "layer": "GLASSES",
+      "name": "1",
+      "rarity": 20
+    }
+  ]
+}

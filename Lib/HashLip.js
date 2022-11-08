@@ -72,12 +72,13 @@ var generateNFt = async function (collection,layersOrder,edition) {
     const addRarity = (_str, total) => {
       let itemRarity;
       let name = _str.slice(0, -4);
-      // if (name.includes('_')) {
-      //   itemRarity = Number(name.split("_")[0]);
-      // }
-      // else {
+      if (name.includes('_')) {
+        itemRarity = Number(name.split("_")[1]);
+        console.log(itemRarity,"Rarity");
+      }
+      else {
         itemRarity = Number((edition / total)/edition)*100;
-      // }
+      }
       return itemRarity;
     };
   

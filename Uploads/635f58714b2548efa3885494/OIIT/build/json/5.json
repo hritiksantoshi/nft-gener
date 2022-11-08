@@ -1,0 +1,36 @@
+{
+  "hash": "081125",
+  "decodedHash": [
+    {
+      "0": 8
+    },
+    {
+      "1": 1
+    },
+    {
+      "2": 5
+    }
+  ],
+  "edition": 5,
+  "date": 1667905907688,
+  "attributes": [
+    {
+      "id": 8,
+      "layer": "BG",
+      "name": "3#0",
+      "rarity": 7.142857142857142
+    },
+    {
+      "id": 1,
+      "layer": "BODY",
+      "name": "1",
+      "rarity": 20
+    },
+    {
+      "id": 5,
+      "layer": "GLASSES",
+      "name": "5",
+      "rarity": 10
+    }
+  ]
+}
