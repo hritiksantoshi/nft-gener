@@ -53,10 +53,7 @@ var generateNFt = async function (collection,layersOrder,edition) {
         resolve({ loadedImage: loadedImage });
       });
     };
-    const imageList = [];
-    const rawdata = fs.readdirSync(imageDir).forEach((file) => {
-      imageList.push(loadImg(`${imageDir}/${file}`));
-    });
+   
     // initalizing functions
     const getElements = (path, total) => {
       return fs
@@ -212,6 +209,10 @@ var generateNFt = async function (collection,layersOrder,edition) {
        
       }
     }
+    const imageList = [];
+    const rawdata = fs.readdirSync(imageDir).forEach((file) => {
+      imageList.push(loadImg(`${imageDir}/${file}`));
+    });
   
     // step 3 creating metaData File
     fs.stat(`${buildDir}/${metDataFile}`, (err) => {

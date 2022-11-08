@@ -1,0 +1,54 @@
+{
+  "hash": "0113233343",
+  "decodedHash": [
+    {
+      "0": 1
+    },
+    {
+      "1": 3
+    },
+    {
+      "2": 3
+    },
+    {
+      "3": 3
+    },
+    {
+      "4": 3
+    }
+  ],
+  "edition": 4,
+  "date": 1667912683533,
+  "attributes": [
+    {
+      "id": 1,
+      "layer": "BG",
+      "name": "1",
+      "rarity": 25
+    },
+    {
+      "id": 3,
+      "layer": "Body",
+      "name": "3",
+      "rarity": 25
+    },
+    {
+      "id": 3,
+      "layer": "Glasses",
+      "name": "3",
+      "rarity": 25
+    },
+    {
+      "id": 3,
+      "layer": "Outfits",
+      "name": "3",
+      "rarity": 25
+    },
+    {
+      "id": 3,
+      "layer": "M and B",
+      "name": "7",
+      "rarity": 33.33333333333333
+    }
+  ]
+}

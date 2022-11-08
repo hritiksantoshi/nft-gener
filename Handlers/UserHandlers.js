@@ -244,12 +244,15 @@ module.exports.generateNfts = async function (payload) {
                     return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.LAYER_NOT_FOUND);
                 }
             };
-          
+         
             await hashlips.generateNFt(collection, layersOrder, parseInt(editions));
+          
             // let nfts = await Model.Nts.find({collectionId:collection._id,isDeleted:false});
-            let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`); 
-            
-            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS, { nfts });
+            console.log(collection,"collection",collection.path,"cp");
+            let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
+            console.log(nfts,"nfts");
+            let preview= `${process.cwd()}/${collection.path}/build/images/preview.gif`
+            return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS,  {nfts,preview} );
         }
         else {
             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.USER_NOT_FOUND);

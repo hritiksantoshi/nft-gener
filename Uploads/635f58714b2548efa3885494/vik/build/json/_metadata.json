@@ -1,0 +1,218 @@
+[
+  {
+    "hash": "0212213242",
+    "decodedHash": [
+      {
+        "0": 2
+      },
+      {
+        "1": 2
+      },
+      {
+        "2": 1
+      },
+      {
+        "3": 2
+      },
+      {
+        "4": 2
+      }
+    ],
+    "edition": 1,
+    "date": 1667911631859,
+    "attributes": [
+      {
+        "id": 2,
+        "layer": "BG",
+        "name": "2",
+        "rarity": 25
+      },
+      {
+        "id": 2,
+        "layer": "Body",
+        "name": "2",
+        "rarity": 25
+      },
+      {
+        "id": 1,
+        "layer": "Eyes",
+        "name": "1",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 2,
+        "layer": "Mouth",
+        "name": "2",
+        "rarity": 50
+      },
+      {
+        "id": 2,
+        "layer": "Glasses",
+        "name": "2",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "0413223143",
+    "decodedHash": [
+      {
+        "0": 4
+      },
+      {
+        "1": 3
+      },
+      {
+        "2": 2
+      },
+      {
+        "3": 1
+      },
+      {
+        "4": 3
+      }
+    ],
+    "edition": 2,
+    "date": 1667911634018,
+    "attributes": [
+      {
+        "id": 4,
+        "layer": "BG",
+        "name": "4",
+        "rarity": 25
+      },
+      {
+        "id": 3,
+        "layer": "Body",
+        "name": "3",
+        "rarity": 25
+      },
+      {
+        "id": 2,
+        "layer": "Eyes",
+        "name": "2",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 1,
+        "layer": "Mouth",
+        "name": "1",
+        "rarity": 50
+      },
+      {
+        "id": 3,
+        "layer": "Glasses",
+        "name": "3",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "0111223244",
+    "decodedHash": [
+      {
+        "0": 1
+      },
+      {
+        "1": 1
+      },
+      {
+        "2": 2
+      },
+      {
+        "3": 2
+      },
+      {
+        "4": 4
+      }
+    ],
+    "edition": 3,
+    "date": 1667911637053,
+    "attributes": [
+      {
+        "id": 1,
+        "layer": "BG",
+        "name": "1",
+        "rarity": 25
+      },
+      {
+        "id": 1,
+        "layer": "Body",
+        "name": "1",
+        "rarity": 25
+      },
+      {
+        "id": 2,
+        "layer": "Eyes",
+        "name": "2",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 2,
+        "layer": "Mouth",
+        "name": "2",
+        "rarity": 50
+      },
+      {
+        "id": 4,
+        "layer": "Glasses",
+        "name": "4",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "0314233141",
+    "decodedHash": [
+      {
+        "0": 3
+      },
+      {
+        "1": 4
+      },
+      {
+        "2": 3
+      },
+      {
+        "3": 1
+      },
+      {
+        "4": 1
+      }
+    ],
+    "edition": 4,
+    "date": 1667911639233,
+    "attributes": [
+      {
+        "id": 3,
+        "layer": "BG",
+        "name": "3 ",
+        "rarity": 25
+      },
+      {
+        "id": 4,
+        "layer": "Body",
+        "name": "4",
+        "rarity": 25
+      },
+      {
+        "id": 3,
+        "layer": "Eyes",
+        "name": "3",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 1,
+        "layer": "Mouth",
+        "name": "1",
+        "rarity": 50
+      },
+      {
+        "id": 1,
+        "layer": "Glasses",
+        "name": "1",
+        "rarity": 25
+      }
+    ]
+  }
+]
