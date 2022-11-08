@@ -1,0 +1,36 @@
+{
+  "hash": "061422",
+  "decodedHash": [
+    {
+      "0": 6
+    },
+    {
+      "1": 4
+    },
+    {
+      "2": 2
+    }
+  ],
+  "edition": 2,
+  "date": 1667905904230,
+  "attributes": [
+    {
+      "id": 6,
+      "layer": "BG",
+      "name": "14",
+      "rarity": 7.142857142857142
+    },
+    {
+      "id": 4,
+      "layer": "BODY",
+      "name": "4",
+      "rarity": 20
+    },
+    {
+      "id": 2,
+      "layer": "GLASSES",
+      "name": "2",
+      "rarity": 40
+    }
+  ]
+}

@@ -229,9 +229,11 @@ module.exports.generateNfts = async function (payload) {
             for (const layerId of collection.layersOrder) {
               
                 let layer = await Model.Layers.findOne({ _id: layerId, isDeleted: false });
+                console.log(layer,"layer");
                 if (layer && fs.existsSync(`${process.cwd()}/Uploads/${collection.userId}/${collection.name}/Layers/${layer.name}`)) {
                    
                     let Images = await Model.Images.find({ layerId, isDeleted: false });
+
                     for (let Image of Images) {
                         if (!fs.existsSync(`${process.cwd()}/${Image.imagePath}`)) {
                             return UniversalFunctions.returnError(STATUS_CODES.NOT_FOUND, MESSAGES.IMAGE_NOT_FOUND);
