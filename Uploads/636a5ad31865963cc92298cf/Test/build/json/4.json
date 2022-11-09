@@ -1,0 +1,18 @@
+{
+  "hash": "02",
+  "decodedHash": [
+    {
+      "0": 2
+    }
+  ],
+  "edition": 4,
+  "date": 1667928615535,
+  "attributes": [
+    {
+      "id": 2,
+      "layer": "legs",
+      "name": "2",
+      "rarity": 25
+    }
+  ]
+}

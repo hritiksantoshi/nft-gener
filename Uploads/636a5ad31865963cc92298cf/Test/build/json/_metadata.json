@@ -1,0 +1,74 @@
+[
+  {
+    "hash": "03",
+    "decodedHash": [
+      {
+        "0": 3
+      }
+    ],
+    "edition": 1,
+    "date": 1667928614773,
+    "attributes": [
+      {
+        "id": 3,
+        "layer": "legs",
+        "name": "3",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "04",
+    "decodedHash": [
+      {
+        "0": 4
+      }
+    ],
+    "edition": 2,
+    "date": 1667928615088,
+    "attributes": [
+      {
+        "id": 4,
+        "layer": "legs",
+        "name": "4",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "01",
+    "decodedHash": [
+      {
+        "0": 1
+      }
+    ],
+    "edition": 3,
+    "date": 1667928615312,
+    "attributes": [
+      {
+        "id": 1,
+        "layer": "legs",
+        "name": "1",
+        "rarity": 25
+      }
+    ]
+  },
+  {
+    "hash": "02",
+    "decodedHash": [
+      {
+        "0": 2
+      }
+    ],
+    "edition": 4,
+    "date": 1667928615535,
+    "attributes": [
+      {
+        "id": 2,
+        "layer": "legs",
+        "name": "2",
+        "rarity": 25
+      }
+    ]
+  }
+]
