@@ -1,0 +1,146 @@
+[
+  {
+    "hash": "011221",
+    "decodedHash": [
+      {
+        "0": 1
+      },
+      {
+        "1": 2
+      },
+      {
+        "2": 1
+      }
+    ],
+    "edition": 1,
+    "date": 1667993733959,
+    "attributes": [
+      {
+        "id": 1,
+        "layer": "BG",
+        "name": "1",
+        "rarity": 25
+      },
+      {
+        "id": 2,
+        "layer": "Body",
+        "name": "2",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 1,
+        "layer": "mustache",
+        "name": "2",
+        "rarity": 33.33333333333333
+      }
+    ]
+  },
+  {
+    "hash": "041323",
+    "decodedHash": [
+      {
+        "0": 4
+      },
+      {
+        "1": 3
+      },
+      {
+        "2": 3
+      }
+    ],
+    "edition": 2,
+    "date": 1667993734632,
+    "attributes": [
+      {
+        "id": 4,
+        "layer": "BG",
+        "name": "4",
+        "rarity": 25
+      },
+      {
+        "id": 3,
+        "layer": "Body",
+        "name": "3",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 3,
+        "layer": "mustache",
+        "name": "Beard 1",
+        "rarity": 33.33333333333333
+      }
+    ]
+  },
+  {
+    "hash": "031221",
+    "decodedHash": [
+      {
+        "0": 3
+      },
+      {
+        "1": 2
+      },
+      {
+        "2": 1
+      }
+    ],
+    "edition": 3,
+    "date": 1667993735529,
+    "attributes": [
+      {
+        "id": 3,
+        "layer": "BG",
+        "name": "3 ",
+        "rarity": 25
+      },
+      {
+        "id": 2,
+        "layer": "Body",
+        "name": "2",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 1,
+        "layer": "mustache",
+        "name": "2",
+        "rarity": 33.33333333333333
+      }
+    ]
+  },
+  {
+    "hash": "021123",
+    "decodedHash": [
+      {
+        "0": 2
+      },
+      {
+        "1": 1
+      },
+      {
+        "2": 3
+      }
+    ],
+    "edition": 4,
+    "date": 1667993736388,
+    "attributes": [
+      {
+        "id": 2,
+        "layer": "BG",
+        "name": "2",
+        "rarity": 25
+      },
+      {
+        "id": 1,
+        "layer": "Body",
+        "name": "1",
+        "rarity": 33.33333333333333
+      },
+      {
+        "id": 3,
+        "layer": "mustache",
+        "name": "Beard 1",
+        "rarity": 33.33333333333333
+      }
+    ]
+  }
+]

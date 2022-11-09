@@ -1,0 +1,36 @@
+{
+  "hash": "021123",
+  "decodedHash": [
+    {
+      "0": 2
+    },
+    {
+      "1": 1
+    },
+    {
+      "2": 3
+    }
+  ],
+  "edition": 4,
+  "date": 1667993736388,
+  "attributes": [
+    {
+      "id": 2,
+      "layer": "BG",
+      "name": "2",
+      "rarity": 25
+    },
+    {
+      "id": 1,
+      "layer": "Body",
+      "name": "1",
+      "rarity": 33.33333333333333
+    },
+    {
+      "id": 3,
+      "layer": "mustache",
+      "name": "Beard 1",
+      "rarity": 33.33333333333333
+    }
+  ]
+}
