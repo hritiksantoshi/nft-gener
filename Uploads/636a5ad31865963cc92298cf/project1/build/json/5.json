@@ -1,24 +1,24 @@
 {
-  "hash": "0413213143",
+  "hash": "0414243441",
   "decodedHash": [
     {
       "0": 4
     },
     {
-      "1": 3
+      "1": 4
     },
     {
-      "2": 1
+      "2": 4
     },
     {
-      "3": 1
+      "3": 4
     },
     {
-      "4": 3
+      "4": 1
     }
   ],
-  "edition": 1,
-  "date": 1667986616334,
+  "edition": 5,
+  "date": 1667986627154,
   "attributes": [
     {
       "id": 4,
@@ -27,27 +27,27 @@
       "rarity": 25
     },
     {
-      "id": 3,
+      "id": 4,
       "layer": "body",
-      "name": "3",
+      "name": "4",
       "rarity": 25
     },
     {
-      "id": 1,
+      "id": 4,
       "layer": "outfit",
-      "name": "2",
+      "name": "5",
+      "rarity": 25
+    },
+    {
+      "id": 4,
+      "layer": "Glasses",
+      "name": "4",
       "rarity": 25
     },
     {
       "id": 1,
-      "layer": "Glasses",
-      "name": "1",
-      "rarity": 25
-    },
-    {
-      "id": 3,
       "layer": "Beard",
-      "name": "7",
+      "name": "2",
       "rarity": 25
     }
   ]

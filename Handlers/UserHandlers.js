@@ -20,7 +20,7 @@ module.exports.register = async function (payload) {
             payload.password = await Bcrypt.hashPassword(payload.password);
             user = await Model.Users.create(payload);
             let accessToken = JWT.Sign(user);
-            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.USER_REGISTER_SUCCESSFULLY, { accessToken });
+            return UniversalFunctions.returnData(STATUS_CODES.CREATED, MESSAGES.USER_REGISTER_SUCCESSFULLY, {email:user.email,userName:user.userName});
         };
     } catch (error) {
         throw error;
