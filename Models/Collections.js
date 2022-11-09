@@ -9,6 +9,9 @@ const CollectionModel = new Schema({
     name: {
         type: Schema.Types.String, index: true, required: true
     },
+    preview:{
+        type: Schema.Types.String, index: true, default:null
+    },
     format: {
         type: Object({
             height: Schema.Types.Number,
