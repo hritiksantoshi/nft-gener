@@ -1,0 +1,54 @@
+{
+  "hash": "0314233141",
+  "decodedHash": [
+    {
+      "0": 3
+    },
+    {
+      "1": 4
+    },
+    {
+      "2": 3
+    },
+    {
+      "3": 1
+    },
+    {
+      "4": 1
+    }
+  ],
+  "edition": 4,
+  "date": 1667911639233,
+  "attributes": [
+    {
+      "id": 3,
+      "layer": "BG",
+      "name": "3 ",
+      "rarity": 25
+    },
+    {
+      "id": 4,
+      "layer": "Body",
+      "name": "4",
+      "rarity": 25
+    },
+    {
+      "id": 3,
+      "layer": "Eyes",
+      "name": "3",
+      "rarity": 33.33333333333333
+    },
+    {
+      "id": 1,
+      "layer": "Mouth",
+      "name": "1",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "Glasses",
+      "name": "1",
+      "rarity": 25
+    }
+  ]
+}

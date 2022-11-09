@@ -1,0 +1,54 @@
+{
+  "hash": "0111223141",
+  "decodedHash": [
+    {
+      "0": 1
+    },
+    {
+      "1": 1
+    },
+    {
+      "2": 2
+    },
+    {
+      "3": 1
+    },
+    {
+      "4": 1
+    }
+  ],
+  "edition": 2,
+  "date": 1667903102955,
+  "attributes": [
+    {
+      "id": 1,
+      "layer": "BG",
+      "name": "1",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "body",
+      "name": "1",
+      "rarity": 50
+    },
+    {
+      "id": 2,
+      "layer": "eyes",
+      "name": "3",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "glasses",
+      "name": "1",
+      "rarity": 50
+    },
+    {
+      "id": 1,
+      "layer": "beared and mustache",
+      "name": "2",
+      "rarity": 100
+    }
+  ]
+}
