@@ -92,6 +92,7 @@ module.exports.getCollections = async function (payload) {
         let { loggedUser } = payload;
         if (loggedUser) {
             let collections = await Model.Collections.find({ userId: loggedUser._id, isDeleted: false });
+            
             return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.COLLECTIONS_LOADED_SUCCESSFULLY, { collections });
         }
         else {
@@ -254,6 +255,10 @@ module.exports.generateNfts = async function (payload) {
             let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
             console.log(nfts,"nfts");
             let preview= `${process.cwd()}/${collection.path}/build/images/preview.gif`
+            await Model.Collections.findByIdAndUpdate(collectionId, {
+                preview:preview,
+                nfts:nfts
+            });
             return UniversalFunctions.returnData(STATUS_CODES.SUCCESS, MESSAGES.SUCCESS,  {nfts,preview} );
         }
         else {
