@@ -1,0 +1,45 @@
+{
+  "hash": "03122232",
+  "decodedHash": [
+    {
+      "0": 3
+    },
+    {
+      "1": 2
+    },
+    {
+      "2": 2
+    },
+    {
+      "3": 2
+    }
+  ],
+  "edition": 1,
+  "date": 1668001359166,
+  "attributes": [
+    {
+      "id": 3,
+      "layer": "bg",
+      "name": "7 ",
+      "rarity": 25
+    },
+    {
+      "id": 2,
+      "layer": "body",
+      "name": "3",
+      "rarity": 33.33333333333333
+    },
+    {
+      "id": 2,
+      "layer": "outfit",
+      "name": "3",
+      "rarity": 33.33333333333333
+    },
+    {
+      "id": 2,
+      "layer": "beard",
+      "name": "8",
+      "rarity": 50
+    }
+  ]
+}

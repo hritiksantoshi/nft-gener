@@ -1,18 +1,27 @@
 {
-  "hash": "01",
+  "hash": "0312",
   "decodedHash": [
     {
-      "0": 1
+      "0": 3
+    },
+    {
+      "1": 2
     }
   ],
   "edition": 3,
-  "date": 1667928615312,
+  "date": 1667995604765,
   "attributes": [
     {
-      "id": 1,
+      "id": 3,
       "layer": "legs",
-      "name": "1",
+      "name": "3",
       "rarity": 25
+    },
+    {
+      "id": 2,
+      "layer": "testPreview",
+      "name": "4",
+      "rarity": 33.33333333333333
     }
   ]
 }

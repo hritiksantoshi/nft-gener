@@ -254,7 +254,10 @@ module.exports.generateNfts = async function (payload) {
             console.log(collection,"collection",collection.path,"cp");
             let nfts = (await FS.readDirectory(`${process.cwd()}/${collection.path}/build/images`)).map((name) => `/Images/${collection.path.replace('Uploads', '')}/build/images/${name}`);
             console.log(nfts,"nfts");
-            let preview= `${process.cwd()}/${collection.path}/build/images/preview.gif`
+            let preview1=`${collection.path}/build/images/preview.gif`
+            let preview = preview1.replace("Uploads","/images")
+            console.log(preview,"previewww")
+            //  `${process.cwd()}/${collection.path}/build/images/preview.gif`
             await Model.Collections.findByIdAndUpdate(collectionId, {
                 preview:preview,
                 nfts:nfts
